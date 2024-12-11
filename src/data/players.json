@@ -1,0 +1,22 @@
+[
+    {
+        "first_name": "Pierre",
+        "last_name": "Dufour",
+        "birth_date": "08/11/2002"
+    },
+    {
+        "first_name": "John",
+        "last_name": "Doe",
+        "birth_date": "08/11/1988"
+    },
+    {
+        "first_name": "Pierre",
+        "last_name": "Dufour",
+        "birth_date": "08/11/2002"
+    },
+    {
+        "first_name": "John",
+        "last_name": "Doe",
+        "birth_date": "08/11/1988"
+    }
+]
