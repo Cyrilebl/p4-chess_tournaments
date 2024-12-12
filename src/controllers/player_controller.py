@@ -20,3 +20,4 @@ def save_to_json(folder_path, file_name, data):
         
   with open(full_path, "w") as file:
     json.dump(existing_data, file, indent=4)
+    

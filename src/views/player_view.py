@@ -10,7 +10,9 @@ def load_data(folder_path, file_name):
   # Construct the full file path
   full_path = os.path.join(folder_path, file_name)
   
-  if os.path.exists(full_path):
+  if not os.path.exists(full_path):
+    return None
+  else:
     with open(full_path, "r") as file:
       return json.load(file)
       
