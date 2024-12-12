@@ -1,6 +1,6 @@
-from .game import Game
+from .match import Match
 # Chaque tour est une liste de matchs.
 
-class Turn(Game):
+class Turn(Match):
   def __init__(self):
     pass
