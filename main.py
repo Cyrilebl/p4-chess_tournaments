@@ -10,7 +10,7 @@ def main():
     if user_choice == "6":
       break
   
-    input("Appuyez sur Entrée pour revenir au menu...")  
+    input("\nAppuyez sur Entrée pour revenir au menu...")  
 
 if __name__ == "__main__":
   main()

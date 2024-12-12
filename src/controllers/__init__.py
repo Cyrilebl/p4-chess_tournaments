@@ -1,3 +1,3 @@
-from .player_controller import save_to_json
+from .player_manager import PlayerManager
 
-__all__ = ["save_to_json"]
+__all__ = ["PlayerManager"]
