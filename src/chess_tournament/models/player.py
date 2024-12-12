@@ -17,10 +17,5 @@ class Player:
       "birth_date": self.birth_date.strftime("%d/%m/%Y"),
     }
     
-    #modifier un joueur
-  def __str__(self):
-   return (    
-    f"Prénom: {self.first_name}\n"
-    f"Nom: {self.last_name}\n"
-    f"Date de naissance: {self.birth_date.strftime('%d/%m/%Y')}\n"
-    )
+  #modifier un joueur
+  

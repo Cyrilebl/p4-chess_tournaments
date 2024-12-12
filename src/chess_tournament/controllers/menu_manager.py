@@ -1,7 +1,7 @@
 import os
 import json
 
-class PlayerManager:
+class MenuManager:
   def get_file_path(self, folder_path, file_name):
     # Ensure the folder exists
     os.makedirs(folder_path, exist_ok=True)

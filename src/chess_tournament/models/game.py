@@ -1,5 +1,5 @@
 class Game:
-  def __init__(self, first_player, second_player, win, defeat, null):
+  def __init__(self, win, defeat, null):
     self.win = win
     self.defeat = defeat
     self.null = null
