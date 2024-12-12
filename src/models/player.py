@@ -10,7 +10,7 @@ class Player:
     except ValueError:
         raise ValueError("La date de naissance doit être au format JJ/MM/AAAA.")
 
-  def to_dict(self):
+  def add_player(self):
     return {      
       "first_name": self.first_name,
       "last_name": self.last_name,

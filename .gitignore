@@ -3,3 +3,6 @@ env/
 
 # Ignore Python bytecode files
 __pycache__/
+
+# Exclude .json files
+data/

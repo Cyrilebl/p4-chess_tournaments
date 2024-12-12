@@ -1,19 +1,9 @@
 from src.views import Menu
-from src.models import Player
-from src.controllers import save_to_json
 
 def main():
-  player1 = Player("pierre", "dufour", "08/11/2002")
-  player2 = Player("john", "doe", "08/11/1988")
-
-  players_data = [player1.to_dict(), player2.to_dict()]
-  save_to_json("src/data", "players.json", players_data)
-
   menu = Menu()
   user_choice = menu.choice()
-  result = menu.display(user_choice)
-  
-  print(result)
+  menu.display(user_choice)
 
 if __name__ == "__main__":
   main()
