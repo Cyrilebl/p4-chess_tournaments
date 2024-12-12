@@ -1,5 +1,11 @@
 from datetime import datetime
 # Un tournoi a un nombre de tours défini.
+# nombre de tours – réglez la valeur par défaut sur 4
+# numéro correspondant au tour actuel
+# une liste des tours
+# une liste des joueurs enregistrés
+# description pour les remarques générales du directeur du tournoi.
+
 class Tournament:
   def __init__(self, name, place, start_date, end_date):
     self.name = name.capitalize()

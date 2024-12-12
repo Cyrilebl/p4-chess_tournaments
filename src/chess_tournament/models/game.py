@@ -1,5 +1,10 @@
+# Chaque match consiste en une paire de joueurs.
+
 class Game:
-  def __init__(self, win, defeat, null):
+  def __init__(self, first_player, second_player, win, defeat, null):
+    self.first_player = first_player
+    self.second_player = second_player
+    
     self.win = win
     self.defeat = defeat
     self.null = null
