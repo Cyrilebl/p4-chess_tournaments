@@ -2,8 +2,15 @@ from src.views import Menu
 
 def main():
   menu = Menu()
-  user_choice = menu.choice()
-  menu.display(user_choice)
+  
+  while True:
+    user_choice = menu.choice()
+    menu.display(user_choice)
+    
+    if user_choice == "6":
+      break
+  
+    input("Appuyez sur Entrée pour revenir au menu...")  
 
 if __name__ == "__main__":
   main()
