@@ -9,7 +9,7 @@ class Match:
       f"{self.second_player['last_name']}, {self.second_player['first_name']}", self.second_player["score"]
       )
     
-  # At the end of a match user select the winner or draw (2 choices)
+  # At the end of a match user select first_player winner, second_player winner or draw (3 choices)
   def result(self, result):
     if result == "first_wins":
       self.first_player.score += 1
