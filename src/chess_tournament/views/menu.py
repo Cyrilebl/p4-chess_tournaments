@@ -1,7 +1,8 @@
 from .display import display_players, display_tournaments
 from src.chess_tournament.models import Player, Tournament
 from src.chess_tournament.controllers import MenuManager
-
+# Sous-categorie à liste des tournois pour selectionner un tournoi
+# Sous-categorie à liste des tournois pour voir les match, generer des match, liste des joueurs, ajouter des joueurs
 class Menu:  
   def choice(self):
     print("""
@@ -30,7 +31,7 @@ class Menu:
     menu_manager = MenuManager()
     FOLDER_PATH = "src/data"
     PLAYER_FILE = "players.json"
-    TOURNAMENT_FILE = "tournament.json"
+    TOURNAMENT_FILE = "tournaments.json"
     
     match choice :
         case "1":
