@@ -1,8 +1,8 @@
 class Match:
-  def __init__(self, first_player, second_player, matches, win, defeat, null):
+  def __init__(self, first_player, second_player, win, defeat, null):
     self.first_player = first_player
     self.second_player = second_player
-    self.matches = matches
+    self.matches = []
     
     self.win = win
     self.defeat = defeat
@@ -10,8 +10,9 @@ class Match:
   
   def set_match(self):
     match = (
-    f"{self.first_player['last_name']}, {self.first_player['first_name']}", self.first_player["rank"], self.first_player["score"],
-    f"{self.second_player['last_name']}, {self.second_player['first_name']}", self.second_player["rank"], self.second_player["score"])
+    f"{self.first_player['last_name']}, {self.first_player['first_name']}", self.first_player["score"],
+    f"{self.second_player['last_name']}, {self.second_player['first_name']}", self.second_player["score"])
+    
     self.matches.append(match)
   
   def result(self):

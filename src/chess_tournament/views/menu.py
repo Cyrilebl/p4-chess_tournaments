@@ -1,7 +1,5 @@
-from .display import display_players
-from .display import display_tournaments
-from src.chess_tournament.models import Player
-from src.chess_tournament.models import Tournament
+from .display import display_players, display_tournaments
+from src.chess_tournament.models import Player, Tournament
 from src.chess_tournament.controllers import MenuManager
 
 class Menu:  
@@ -29,7 +27,7 @@ class Menu:
     return choice
 
   def display(self, choice):
-    player_manager = MenuManager()
+    menu_manager = MenuManager()
     FOLDER_PATH = "src/data"
     PLAYER_FILE = "players.json"
     TOURNAMENT_FILE = "tournament.json"
@@ -37,7 +35,7 @@ class Menu:
     match choice :
         case "1":
           # Afficher la liste des tournois
-          tournaments_data = player_manager.load_data(FOLDER_PATH, TOURNAMENT_FILE)
+          tournaments_data = menu_manager.load_data(FOLDER_PATH, TOURNAMENT_FILE)
           
           if tournaments_data is None:
             result = "Aucun tournoi enregistré."
@@ -50,17 +48,21 @@ class Menu:
           place = input("Lieu: ")
           start_date = input("Date de début (JJ/MM/AAAA): ")
           end_date = input("Date de fin (JJ/MM/AAAA): ")
+          description = input("Description: ")
+          description = description.capitalize() if description else "Pas de description"
+          turn = input("Nombre de tours (4 par défaut): ")
+          turn = turn if turn else 4
           
-          tournament = Tournament(name, place, start_date, end_date)
+          tournament = Tournament(name, place, start_date, end_date, turn, description)
           tournament_data = [tournament.add_tournament()]
 
-          player_manager.save_to_json(FOLDER_PATH, TOURNAMENT_FILE, tournament_data)
+          menu_manager.save_to_json(FOLDER_PATH, TOURNAMENT_FILE, tournament_data)
           
           result = "Le tournoi a été ajouté avec succès."
           
         case "3":
           # Afficher la liste des joueurs
-          players_data = player_manager.load_data(FOLDER_PATH, PLAYER_FILE)
+          players_data = menu_manager.load_data(FOLDER_PATH, PLAYER_FILE)
           
           if players_data is None:
             result = "Aucun joueur enregistré."
@@ -76,7 +78,7 @@ class Menu:
           player = Player(first_name, last_name, birth_date)
           players_data = [player.add_player()]
 
-          player_manager.save_to_json(FOLDER_PATH, PLAYER_FILE, players_data)
+          menu_manager.save_to_json(FOLDER_PATH, PLAYER_FILE, players_data)
           
           result = "Le joueur a été ajouté avec succès."
           
