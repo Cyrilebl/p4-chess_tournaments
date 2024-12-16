@@ -4,7 +4,8 @@ from datetime import datetime
 # une liste des joueurs enregistrés
 
 class Tournament:
-  def __init__(self, name, place, start_date, end_date, turn, description):
+  def __init__(self, id, name, place, start_date, end_date, turn, description):
+    self.id = id
     self.name = name.title()
     self.place = place.capitalize()
     
@@ -19,6 +20,7 @@ class Tournament:
     
   def add_tournament(self):
     return {
+      "id": self.id,
       "name": self.name,
       "place": self.place,
       "start_date": self.start_date.strftime("%d/%m/%Y"),

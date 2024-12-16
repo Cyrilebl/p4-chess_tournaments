@@ -23,6 +23,10 @@ class MenuHandler:
       
       case "2":
         # Créer un tournoi
+        tournaments_data = menu_manager.load_data(self.FOLDER_PATH, self.TOURNAMENT_FILE)
+        existing_ids = [tournament["id"] for tournament in tournaments_data]
+        id = max(existing_ids, default=0) + 1
+        
         name = input("Nom: ")
         place = input("Lieu: ")
         start_date = input("Date de début (JJ/MM/AAAA): ")
@@ -30,9 +34,9 @@ class MenuHandler:
         description = input("Description: ").capitalize() or "Pas de description"
         turn = input("Nombre de tours (4 par défaut): ") or 4
         
-        tournament = Tournament(name, place, start_date, end_date, turn, description)
-        tournament_data = [tournament.add_tournament()]
-        menu_manager.save_to_json(self.FOLDER_PATH, self.TOURNAMENT_FILE, tournament_data)
+        tournament = Tournament(id, name, place, start_date, end_date, turn, description)
+        tournaments_data = [tournament.add_tournament()]
+        menu_manager.save_to_json(self.FOLDER_PATH, self.TOURNAMENT_FILE, tournaments_data)
         
         return "Le tournoi a été ajouté avec succès."
       
