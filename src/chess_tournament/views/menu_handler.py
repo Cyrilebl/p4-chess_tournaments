@@ -53,13 +53,17 @@ class MenuHandler:
         else:
           return display_players(players_data)
         
-      case "2":
+      case "2":        
         # Ajouter un joueur
+        players_data = menu_manager.load_data(self.FOLDER_PATH, self.PLAYER_FILE)
+        existing_ids = [player["id"] for player in players_data]
+        id = max(existing_ids, default=0) + 1
+        
         first_name = input("Prénom du joueur: ")
         last_name = input("Nom de famille: ")
         birth_date = input("Date de naissance (JJ/MM/AAAA): ")
         
-        player = Player(first_name, last_name, birth_date)
+        player = Player(id, first_name, last_name, birth_date)
         players_data = [player.add_player()]
 
         menu_manager.save_to_json(self.FOLDER_PATH, self.PLAYER_FILE, players_data)

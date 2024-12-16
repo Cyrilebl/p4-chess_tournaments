@@ -1,11 +1,11 @@
 from tabulate import tabulate
                
 def display_players(players_data):
-  headers = ["Nom", "Prénom", "Date de naissance"]
+  headers = ["ID", "Nom", "Prénom", "Date de naissance"]
   rows = []
   
   for player in players_data:
-    rows.append([player['last_name'], player['first_name'], player['birth_date']])
+    rows.append([player["id"], player['last_name'], player['first_name'], player['birth_date']])
   
   return tabulate(rows, headers, tablefmt="grid")
 
