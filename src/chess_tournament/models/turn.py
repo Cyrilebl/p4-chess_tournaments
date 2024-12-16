@@ -1,4 +1,3 @@
-from .match import Match
 # Chaque tour est une liste de matchs.
 # Noms : Round 1, Round 2 ...
 # Un champ Date et heure de début

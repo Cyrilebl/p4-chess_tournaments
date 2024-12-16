@@ -26,8 +26,8 @@ class Menu:
     print("""
 === TOURNOIS ===
 
-[1] Liste des tournois
-[2] Créer un nouveau tournoi
+[1] Créer un nouveau tournoi
+[2] Gérer un tournoi
 [3] Menu principal
 """)
     
@@ -44,13 +44,15 @@ class Menu:
     
     return self.handle_user_choice_error(["1", "2", "3"])
 
-  def turns_menu(self):
+  def tournament_management(self):
     print("""    
-[1] Choisir un tournoi
-[2] Ajouter un nouveau joueur
-[3] Generer des match
-[4] Voir les matchs
-[5] Quitter
+=== GESTION DU TOURNOI ===
+
+[1] Voir les joueurs
+[2] Ajouter des joueurs
+[3] Générer les matchs pour le tour actuel
+[4] Voir les matchs du tour actuel
+[5] Menu principal
 """)
     
     return self.handle_user_choice_error(["1", "2", "3", "4", "5"])

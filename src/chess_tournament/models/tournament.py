@@ -4,7 +4,7 @@ from datetime import datetime
 # une liste des joueurs enregistrés
 
 class Tournament:
-  def __init__(self, id, name, place, start_date, end_date, turn, description):
+  def __init__(self, id, name, place, start_date, end_date, description):
     self.id = id
     self.name = name.title()
     self.place = place.capitalize()
@@ -15,7 +15,6 @@ class Tournament:
     except ValueError:
       raise ValueError("La date doit être au format JJ/MM/AAAA.")
     
-    self.turn = turn
     self.description = description
     
   def add_tournament(self):
@@ -28,3 +27,6 @@ class Tournament:
       "turn": self.turn,
       "description": self.description,
     }
+  
+  def add_player(self):
+    pass
