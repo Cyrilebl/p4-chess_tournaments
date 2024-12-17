@@ -20,12 +20,6 @@ class MenuManager:
       
   def save_to_json(self, folder_path, file_name, data):
       full_path = self.get_file_path(folder_path, file_name)
-      
-      # existing_data = self.load_data(folder_path, file_name)
-      # if isinstance(data, list):
-      #   existing_data.extend(data)
-      # else:
-      #   existing_data.append(data)
         
       with open(full_path, "w") as file:
         json.dump(data, file, indent=4)
