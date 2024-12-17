@@ -5,14 +5,14 @@
 # Les champs doivent être automatiquement remplis lorsque l'utilisateur crée un tour et le marque comme terminé
 
 class Turn:
-  def __init__(self, name):
-    self.name = name
-    self.matches = []
-    
-  def add_match(self, match):
-    self.matches.append(match)
-    
-  # À faire
-  def __str__(self):
-    for match in self.matches:
-      return match
+    def __init__(self, name):
+        self.name = name
+        self.matches = []
+        
+    def add_match(self, match):
+        self.matches.append(match)
+        
+    # À faire
+    def __str__(self):
+        for match in self.matches:
+            return match
