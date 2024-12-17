@@ -5,10 +5,12 @@ class Match:
 
     def set_match(self):
         return (
-        f"{self.first_player['last_name']}, {self.first_player['first_name']}", self.first_player["score"],
-        f"{self.second_player['last_name']}, {self.second_player['first_name']}", self.second_player["score"]
+            f"{self.first_player['last_name']}, {self.first_player['first_name']}",
+            self.first_player["score"],
+            f"{self.second_player['last_name']}, {self.second_player['first_name']}",
+            self.second_player["score"],
         )
-        
+
     # At the end of a match user select first_player winner, second_player winner or draw (3 choices)
     def result(self, result):
         if result == "first_wins":

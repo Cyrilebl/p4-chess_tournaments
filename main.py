@@ -1,5 +1,6 @@
 from src.chess_tournament.views import Menu, MenuHandler
 
+
 def main():
     menu = Menu()
     menu_handler = MenuHandler()
@@ -14,9 +15,9 @@ def main():
                 main()
             elif result:
                 print(f"\n{result}")
-        
+
             input("\nAppuyez sur Entrée pour revenir au menu des tournois...")
-    
+
     elif user_choice == "2":
         while True:
             sub_choice = menu.players_menu()
@@ -25,13 +26,13 @@ def main():
                 main()
             elif result:
                 print(f"\n{result}")
-            
+
             input("\nAppuyez sur Entrée pour revenir au menu des joueurs...")
-    
+
     elif user_choice == "3":
         print("\nAu revoir !")
         exit()
 
+
 if __name__ == "__main__":
     main()
-  

@@ -3,14 +3,15 @@ from src.chess_tournament.models import Player, Tournament
 from src.chess_tournament.controllers import MenuManager
 from . import Menu
 
+
 class MenuHandler:
     FOLDER_PATH = "src/data"
     TOURNAMENT_FILE = "tournaments.json"
     PLAYER_FILE = "players.json"
-  
+
     def __init__(self):
         self.menu_manager = MenuManager()
-  
+
     def load_data(self, file_name):
         data = self.menu_manager.load_data(self.FOLDER_PATH, file_name)
         return data if data is not None else []
@@ -21,12 +22,12 @@ class MenuHandler:
     def generate_new_id(self, data):
         existing_ids = [item["id"] for item in data]
         return max(existing_ids, default=0) + 1
-      
+
     def handle_tournaments_menu(self, user_choice):
         menu = Menu()
         tournaments_data = self.load_data(self.TOURNAMENT_FILE)
 
-        match user_choice :
+        match user_choice:
             case "1":
                 # Créer un tournoi
                 id = self.generate_new_id(tournaments_data)
@@ -35,9 +36,13 @@ class MenuHandler:
                 start_date = input("Date de début (JJ/MM/AAAA): ")
                 end_date = input("Date de fin (JJ/MM/AAAA): ")
                 turn = input("Nombre de tours (4 par défaut): ") or 4
-                description = input("Description: ").capitalize() or "Pas de description"
+                description = (
+                    input("Description: ").capitalize() or "Pas de description"
+                )
 
-                tournament = Tournament(id, name, place, start_date, end_date, turn, description)
+                tournament = Tournament(
+                    id, name, place, start_date, end_date, turn, description
+                )
                 tournaments_data.append(tournament.add_tournament())
                 self.save_data(self.TOURNAMENT_FILE, tournaments_data)
 
@@ -58,7 +63,10 @@ class MenuHandler:
                         start_date = tournament["start_date"]
                         end_date = tournament["end_date"]
                         turn = tournament["turn"]
-                        print(f"Vous avez choisi le tournoi {name} à {place}\nDate: du {start_date} au {end_date}\nNombre de tours: {turn}")
+                        print(
+                            f"Vous avez choisi le tournoi {name} à {place}\n"
+                            "Date: du {start_date} au {end_date}\nNombre de tours: {turn}"
+                        )
                     "Aucun tournoi ne correspond à cet ID."
 
                 sub_choice = menu.tournament_management()
@@ -70,19 +78,23 @@ class MenuHandler:
     def handle_players_menu(self, user_choice):
         players_data = self.load_data(self.PLAYER_FILE)
 
-        match user_choice :     
+        match user_choice:
             case "1":
-            # Afficher la liste des joueurs
-                return display_players(players_data) if players_data is None else "Aucun joueur enregistré."
+                # Afficher la liste des joueurs
+                return (
+                    display_players(players_data)
+                    if players_data is None
+                    else "Aucun joueur enregistré."
+                )
 
-            case "2":        
+            case "2":
                 # Ajouter un joueur
                 id = self.generate_new_id(players_data)
                 first_name = input("Prénom du joueur: ")
                 last_name = input("Nom de famille: ")
                 birth_date = input("Date de naissance (JJ/MM/AAAA): ")
 
-                player = Player(id, first_name, last_name, birth_date)        
+                player = Player(id, first_name, last_name, birth_date)
                 players_data.append(player.add_player())
                 self.save_data(self.PLAYER_FILE, players_data)
 
@@ -101,7 +113,7 @@ class MenuHandler:
                 try:
                     players = selected_tournament["players"]
                     return display_players(players)
-                except:
+                except KeyError:
                     return "Aucun joueur dans ce tournoi."
 
             case "2":
@@ -116,7 +128,9 @@ class MenuHandler:
                 new_player_id = input("Entrez l'ID du joueur à ajouter: ")
 
                 # Trouver le joueur correspondant
-                player = next((p for p in players_data if p["id"] == int(new_player_id)), None)
+                player = next(
+                    (p for p in players_data if p["id"] == int(new_player_id)), None
+                )
                 if not player:
                     return "Joueur introuvable."
 
