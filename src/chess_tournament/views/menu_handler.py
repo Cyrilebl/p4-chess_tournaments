@@ -157,6 +157,7 @@ class MenuHandler:
 
             case "3":
                 # Générer les matchs pour le tour actuel
+                # Check current turn
                 turn = Turn("Round 1")
                 if turn.name == "Round 1":
                     pass
@@ -169,9 +170,9 @@ class MenuHandler:
                 for player in players:
                     player.pop("id")
                     player.pop("birth_date")
-                print(create_turn("Round 1", players))
+                    player["score"] = 0
 
-                return "Matchs générés pour le tour actuel."
+                return create_turn("Round 1", players)
 
             case "4":
                 # Voir les matchs du tour actuel

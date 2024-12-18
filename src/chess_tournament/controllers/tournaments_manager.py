@@ -9,10 +9,10 @@ def create_turn(turn_name, players):
     if len(players) % 2 != 0:
         bye_player = players.pop()
         print(
-            f"{bye_player['last_name']}{bye_player['first_name']} obtient un bye pour ce tour."
+            f"\n{bye_player['last_name']}{bye_player['first_name']} obtient un bye pour ce tour."
         )
 
-    for i in range(len(players), 2):
+    for i in range(0, len(players), 2):
         first_player = players[i]
         second_player = players[i + 1]
         match = Match(first_player, second_player)

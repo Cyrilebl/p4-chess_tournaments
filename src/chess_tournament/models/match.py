@@ -3,9 +3,6 @@ class Match:
         self.first_player = first_player
         self.second_player = second_player
 
-        self.first_player["score"] = self.first_player.get("score", 0)
-        self.second_player["score"] = self.second_player.get("score", 0)
-
     def set_match(self):
         return (
             f"{self.first_player['last_name']}, {self.first_player['first_name']}",
@@ -25,4 +22,4 @@ class Match:
             self.second_player.score += 0.5
 
     def __str__(self):
-        return f"{self.first_player} vs {self.second_player}"
+        return f"{self.first_player['last_name']} {self.first_player['first_name']} vs {self.second_player['last_name']} {self.second_player['first_name']}"
