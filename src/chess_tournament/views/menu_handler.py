@@ -29,6 +29,12 @@ class MenuHandler:
 
         match user_choice:
             case "1":
+                # Liste des tournois
+                if tournaments_data is None:
+                    return "Aucun tournoi enregistré."
+                return display_tournaments(tournaments_data)
+
+            case "2":
                 # Créer un tournoi
                 id = self.generate_new_id(tournaments_data)
                 name = input("Nom: ")
@@ -48,7 +54,7 @@ class MenuHandler:
 
                 return "Le tournoi a été ajouté avec succès."
 
-            case "2":
+            case "3":
                 # Gestion d'un tournoi
                 if tournaments_data is None:
                     return "Aucun tournoi enregistré."
@@ -72,7 +78,7 @@ class MenuHandler:
                 sub_choice = menu.tournament_management()
                 return self.handle_tournament_management(sub_choice, choice)
 
-            case "3":
+            case "4":
                 return None
 
     def handle_players_menu(self, user_choice):
@@ -81,11 +87,9 @@ class MenuHandler:
         match user_choice:
             case "1":
                 # Afficher la liste des joueurs
-                return (
-                    display_players(players_data)
-                    if players_data is None
-                    else "Aucun joueur enregistré."
-                )
+                if players_data is None:
+                    return "Aucun joueur enregistré."
+                return display_players(players_data)
 
             case "2":
                 # Ajouter un joueur

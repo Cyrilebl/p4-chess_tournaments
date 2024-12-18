@@ -29,13 +29,14 @@ class Menu:
             """
         === TOURNOIS ===
 
-        [1] Créer un nouveau tournoi
-        [2] Gérer un tournoi
-        [3] Menu principal
+        [1] Liste des tournois
+        [2] Créer un nouveau tournoi
+        [3] Gérer un tournoi
+        [4] Menu principal
         """
         )
 
-        return self.handle_user_choice_error(["1", "2", "3"])
+        return self.handle_user_choice_error(["1", "2", "3", "4"])
 
     def players_menu(self):
         print(

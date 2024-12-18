@@ -5,7 +5,9 @@ def display_players(players_data):
     headers = ["ID", "Nom", "Prénom", "Date de naissance"]
     rows = []
 
-    for player in players_data:
+    sorted_players = sorted(players_data, key=lambda player: player["last_name"])
+
+    for player in sorted_players:
         rows.append(
             [
                 player["id"],
@@ -14,7 +16,6 @@ def display_players(players_data):
                 player["birth_date"],
             ]
         )
-
     return tabulate(rows, headers, tablefmt="grid")
 
 
