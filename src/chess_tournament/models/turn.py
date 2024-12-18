@@ -15,5 +15,4 @@ class Turn:
 
     # À faire
     def __str__(self):
-        for match in self.matches:
-            return match
+        return "\n".join([str(match) for match in self.matches])

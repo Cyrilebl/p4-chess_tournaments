@@ -1,6 +1,6 @@
 from .display_data import display_players, display_tournaments
-from src.chess_tournament.models import Player, Tournament
-from src.chess_tournament.controllers import MenuManager
+from src.chess_tournament.models import Player, Tournament, Turn
+from src.chess_tournament.controllers import MenuManager, create_turn
 from . import Menu
 
 
@@ -60,7 +60,7 @@ class MenuHandler:
                         turn = tournament["turn"]
                         print(
                             f"Vous avez choisi le tournoi {name} à {place}\n"
-                            "Date: du {start_date} au {end_date}\nNombre de tours: {turn}"
+                            f"Date: du {start_date} au {end_date}\nNombre de tours: {turn}"
                         )
                     "Aucun tournoi ne correspond à cet ID."
 
@@ -102,14 +102,6 @@ class MenuHandler:
 
         match user_choice:
             case "1":
-                # Voir les joueurs du tournoi
-                try:
-                    players = selected_tournament["players"]
-                    return display_players(players)
-                except KeyError:
-                    return "Aucun joueur dans ce tournoi."
-
-            case "2":
                 # Ajouter des joueurs au tournoi
                 players_data = self.menu_manager.load_data(self.PLAYER_FILE)
                 if players_data is None:
@@ -155,8 +147,30 @@ class MenuHandler:
                 self.menu_manager.save_data(self.TOURNAMENT_FILE, tournaments_data)
                 return "Ajout de joueurs terminé."
 
+            case "2":
+                # Voir les joueurs du tournoi
+                try:
+                    players = selected_tournament["players"]
+                    return display_players(players)
+                except KeyError:
+                    return "Aucun joueur dans ce tournoi."
+
             case "3":
                 # Générer les matchs pour le tour actuel
+                turn = Turn("Round 1")
+                if turn.name == "Round 1":
+                    pass
+
+                try:
+                    players = selected_tournament["players"]
+                except KeyError:
+                    return "Aucun joueur dans ce tournoi."
+
+                for player in players:
+                    player.pop("id")
+                    player.pop("birth_date")
+                print(create_turn("Round 1", players))
+
                 return "Matchs générés pour le tour actuel."
 
             case "4":

@@ -10,16 +10,16 @@ class Menu:
     def main_menu(self):
         print(
             """
-        -----------------------------
-            TOURNOIS D'ECHECS
-        -----------------------------
+---------------------------------
+        TOURNOIS D'ECHECS
+---------------------------------
 
-        === MENU PRINCIPAL ===
+=== MENU PRINCIPAL ===
 
-        [1] Gestion des tournois
-        [2] Gestion des joueurs
-        [3] Quitter
-        """
+[1] Gestion des tournois
+[2] Gestion des joueurs
+[3] Quitter
+"""
         )
 
         return self.handle_user_choice_error(["1", "2", "3"])
@@ -27,13 +27,13 @@ class Menu:
     def tournaments_menu(self):
         print(
             """
-        === TOURNOIS ===
+=== TOURNOIS ===
 
-        [1] Liste des tournois
-        [2] Créer un nouveau tournoi
-        [3] Gérer un tournoi
-        [4] Menu principal
-        """
+[1] Liste des tournois
+[2] Créer un nouveau tournoi
+[3] Gérer un tournoi
+[4] Menu principal
+"""
         )
 
         return self.handle_user_choice_error(["1", "2", "3", "4"])
@@ -41,11 +41,11 @@ class Menu:
     def players_menu(self):
         print(
             """
-        === JOUEURS ===
+=== JOUEURS ===
 
-        [1] Liste des joueurs
-        [2] Ajouter un nouveau joueur
-        [3] Menu principal
+[1] Liste des joueurs
+[2] Ajouter un nouveau joueur
+[3] Menu principal
         """
         )
 
@@ -54,13 +54,13 @@ class Menu:
     def tournament_management(self):
         print(
             """
-        === GESTION DU TOURNOI ===
+=== GESTION DU TOURNOI ===
 
-        [1] Voir les joueurs
-        [2] Ajouter des joueurs
-        [3] Générer les matchs pour le tour actuel
-        [4] Voir les matchs du tour actuel
-        [5] Menu principal
+[1] Ajouter des joueurs
+[2] Voir les joueurs
+[3] Générer les matchs pour le tour actuel
+[4] Voir les matchs du tour actuel
+[5] Menu principal
         """
         )
 
