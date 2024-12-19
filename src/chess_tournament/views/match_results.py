@@ -17,10 +17,9 @@ class MatchResults:
             else:
                 print("Choix invalide, veuillez entrer 1, 2, ou 3.")
 
-    def display_results(self, turn):
+    def display_turn_matches(self, turn):
         for match in turn.matches:
             print(f"\n{match}")
-
             self.scoring(match.first_player, match.second_player)
 
         print("\nRésultats du tour:")

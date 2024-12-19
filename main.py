@@ -1,11 +1,10 @@
 from src.chess_tournament.views import Menu
-from src.chess_tournament.controllers import MenuHandler
+from src.chess_tournament.controllers import MenuManager
 
 
 def main():
     menu = Menu()
-    menu_handler = MenuHandler()
-
+    menu_handler = MenuManager()
     user_choice = menu.main_menu()
 
     if user_choice == "1":
