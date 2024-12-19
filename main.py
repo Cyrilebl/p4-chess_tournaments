@@ -1,4 +1,5 @@
-from src.chess_tournament.views import Menu, MenuHandler
+from src.chess_tournament.views import Menu
+from src.chess_tournament.controllers import MenuHandler
 
 
 def main():

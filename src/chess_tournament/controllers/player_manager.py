@@ -1,7 +1,7 @@
-from .display_data import display_players, display_tournaments
 from src.chess_tournament.models import Player, Tournament, Turn
-from src.chess_tournament.controllers import MenuManager, create_turn
-from . import Menu
+from src.chess_tournament.views import Menu, DataDisplay, MatchResults
+from .tournament_manager import TournamentManager
+from .menu_manager import MenuManager
 
 
 class MenuHandler:
@@ -11,26 +11,30 @@ class MenuHandler:
 
     def __init__(self):
         self.menu_manager = MenuManager(self.FOLDER_PATH)
+        self.players_data = self.menu_manager.load_data(self.PLAYER_FILE)
+        self.tournaments_data = self.menu_manager.load_data(self.TOURNAMENT_FILE)
+        self.data_display = DataDisplay(self.players_data, self.tournaments_data)
+        self.tournament_manager = TournamentManager()
+        self.match_results = MatchResults()
 
     def handle_tournaments_menu(self, user_choice):
         menu = Menu()
-        tournaments_data = self.menu_manager.load_data(self.TOURNAMENT_FILE)
 
         match user_choice:
             case "1":
                 # Liste des tournois
-                if tournaments_data is None:
+                if self.tournaments_data is None:
                     return "Aucun tournoi enregistré."
-                return display_tournaments(tournaments_data)
+                return self.data_display.format_tournaments()
 
             case "2":
                 # Créer un tournoi
-                id = self.menu_manager.generate_new_id(tournaments_data)
+                id = self.menu_manager.generate_new_id(self.tournaments_data)
                 name = input("Nom: ")
                 place = input("Lieu: ")
                 start_date = input("Date de début (JJ/MM/AAAA): ")
                 end_date = input("Date de fin (JJ/MM/AAAA): ")
-                turn = input("Nombre de tours (4 par défaut): ") or 4
+                turn = int(input("Nombre de tours (4 par défaut): ")) or 4
                 description = (
                     input("Description: ").capitalize() or "Pas de description"
                 )
@@ -38,20 +42,20 @@ class MenuHandler:
                 tournament = Tournament(
                     id, name, place, start_date, end_date, turn, description
                 )
-                tournaments_data.append(tournament.add_tournament())
-                self.menu_manager.save_data(self.TOURNAMENT_FILE, tournaments_data)
+                self.tournaments_data.append(tournament.add_tournament())
+                self.menu_manager.save_data(self.TOURNAMENT_FILE, self.tournaments_data)
 
                 return "Le tournoi a été ajouté avec succès."
 
             case "3":
                 # Gestion d'un tournoi
-                if tournaments_data is None:
+                if self.tournaments_data is None:
                     return "Aucun tournoi enregistré."
-                print(display_tournaments(tournaments_data))
+                print(self.data_display.format_tournaments())
 
                 choice = int(input("\nEntrez l'ID du tournoi à gérer: "))
 
-                for tournament in tournaments_data:
+                for tournament in self.tournaments_data:
                     if tournament["id"] == choice:
                         name = tournament["name"]
                         place = tournament["place"]
@@ -71,25 +75,23 @@ class MenuHandler:
                 return None
 
     def handle_players_menu(self, user_choice):
-        players_data = self.menu_manager.load_data(self.PLAYER_FILE)
-
         match user_choice:
             case "1":
                 # Afficher la liste des joueurs
-                if players_data is None:
+                if self.players_data is None:
                     return "Aucun joueur enregistré."
-                return display_players(players_data)
+                return self.data_display.format_players()
 
             case "2":
                 # Ajouter un joueur
-                id = self.menu_manager.generate_new_id(players_data)
+                id = self.menu_manager.generate_new_id(self.players_data)
                 first_name = input("Prénom du joueur: ")
                 last_name = input("Nom de famille: ")
                 birth_date = input("Date de naissance (JJ/MM/AAAA): ")
 
                 player = Player(id, first_name, last_name, birth_date)
-                players_data.append(player.add_player())
-                self.menu_manager.save_data(self.PLAYER_FILE, players_data)
+                self.players_data.append(player.add_player())
+                self.menu_manager.save_data(self.PLAYER_FILE, self.players_data)
 
                 return "Le joueur a été ajouté avec succès."
 
@@ -97,16 +99,14 @@ class MenuHandler:
                 return None
 
     def handle_tournament_management(self, user_choice, id):
-        tournaments_data = self.menu_manager.load_data(self.TOURNAMENT_FILE)
-        selected_tournament = next(t for t in tournaments_data if t["id"] == id)
+        selected_tournament = next(t for t in self.tournaments_data if t["id"] == id)
 
         match user_choice:
             case "1":
                 # Ajouter des joueurs au tournoi
-                players_data = self.menu_manager.load_data(self.PLAYER_FILE)
-                if players_data is None:
+                if self.players_data is None:
                     return "Aucun joueur enregistré."
-                print(display_players(players_data))
+                print(self.data_display.format_players(self.players_data))
 
                 while True:
                     # Sélectionner un joueur
@@ -120,7 +120,11 @@ class MenuHandler:
                     try:
                         # Trouver le joueur correspondant
                         player = next(
-                            (p for p in players_data if p["id"] == int(new_player_id)),
+                            (
+                                p
+                                for p in self.players_data
+                                if p["id"] == int(new_player_id)
+                            ),
                             None,
                         )
                     except ValueError:
@@ -144,24 +148,19 @@ class MenuHandler:
                     else:
                         print("Ce joueur fait déjà partie du tournoi.")
 
-                self.menu_manager.save_data(self.TOURNAMENT_FILE, tournaments_data)
+                self.menu_manager.save_data(self.TOURNAMENT_FILE, self.tournaments_data)
                 return "Ajout de joueurs terminé."
 
             case "2":
                 # Voir les joueurs du tournoi
                 try:
                     players = selected_tournament["players"]
-                    return display_players(players)
+                    return self.data_display.format_players(players)
                 except KeyError:
                     return "Aucun joueur dans ce tournoi."
 
             case "3":
-                # Générer les matchs pour le tour actuel
-                # Check current turn
-                turn = Turn("Round 1")
-                if turn.name == "Round 1":
-                    pass
-
+                # Générer les matchs
                 try:
                     players = selected_tournament["players"]
                 except KeyError:
@@ -172,11 +171,25 @@ class MenuHandler:
                     player.pop("birth_date")
                     player["score"] = 0
 
-                return create_turn("Round 1", players)
+                turn_number = selected_tournament["turn"]
+                for i in range(1, turn_number + 1):
+                    current_turn = Turn(f"Round {i}")
+                    if current_turn.name == "Round 1":
+                        turn = self.tournament_manager.create_turn(
+                            current_turn, players
+                        )
+                        print(turn)
+                        self.match_results.display_results(turn)
+                    else:
+                        turn = self.tournament_manager.create_turn(
+                            current_turn, players
+                        )
+                        print(turn)
+                        self.match_results.display_results(turn)
 
             case "4":
-                # Voir les matchs du tour actuel
-                return "Matchs du tour actuel affichés."
+                # Voir les matchs
+                return "Matchs affichés."
 
             case "5":
                 return None

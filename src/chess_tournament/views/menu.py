@@ -58,8 +58,8 @@ class Menu:
 
 [1] Ajouter des joueurs
 [2] Voir les joueurs
-[3] Générer les matchs pour le tour actuel
-[4] Voir les matchs du tour actuel
+[3] Générer les matchs
+[4] Voir les matchs
 [5] Menu principal
         """
         )
