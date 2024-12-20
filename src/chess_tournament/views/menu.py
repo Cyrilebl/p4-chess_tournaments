@@ -43,13 +43,14 @@ class Menu:
             """
 === JOUEURS ===
 
-[1] Liste des joueurs
-[2] Ajouter un nouveau joueur
-[3] Menu principal
+[1] Liste des joueurs (ID)
+[2] Liste des joueurs (Ordre alphabétique)
+[3] Ajouter un nouveau joueur
+[4] Menu principal
         """
         )
 
-        return self.handle_user_choice_error(["1", "2", "3"])
+        return self.handle_user_choice_error(["1", "2", "3", "4"])
 
     def tournament_management(self):
         print(

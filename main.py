@@ -30,7 +30,7 @@ def main():
             input("\nAppuyez sur Entrée pour revenir au menu des joueurs...")
 
     elif user_choice == "3":
-        print("\nAu revoir !")
+        print("\nÀ bientôt !")
         exit()
 
 

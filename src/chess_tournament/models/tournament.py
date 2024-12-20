@@ -2,7 +2,6 @@ from datetime import datetime
 
 # numéro correspondant au tour actuel
 # une liste des tours
-# une liste des joueurs enregistrés
 
 
 class Tournament:
