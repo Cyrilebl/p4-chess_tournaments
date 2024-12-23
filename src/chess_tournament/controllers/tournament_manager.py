@@ -31,7 +31,7 @@ class TournamentManager:
 
         return "Le tournoi a été ajouté avec succès."
 
-    def manage_tournament(self, menu, handle_tournament_management):
+    def manage_tournament(self):
         print(self.list_tournament())
 
         while True:
@@ -44,8 +44,7 @@ class TournamentManager:
             except ValueError:
                 print("Veuillez entrer un ID valide")
 
-        sub_choice = menu.tournament_management()
-        return handle_tournament_management(sub_choice, choice)
+        return choice
 
     def update_player_score(self, tournament, updated_scores):
         for player in tournament["players"]:
@@ -72,7 +71,7 @@ class TournamentManager:
                 first_player = players[i]
                 second_player = players[i + 1]
                 match = Match(first_player, second_player)
-                turn.add_match(match)
+                turn.add_match(match.set_match())
 
             return turn
 
@@ -85,5 +84,8 @@ class TournamentManager:
     @create_turn
     def sort_by_score(self, players):
         return players.sort(key=lambda player: player["score"], reverse=True)
+
+    def already_play():
+        pass
 
     # if first_player already play against second_player skip

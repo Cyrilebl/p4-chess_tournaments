@@ -1,4 +1,3 @@
-from src.chess_tournament.models import Turn
 from src.chess_tournament.views import Menu, DataDisplay, MatchResults
 from .data_manager import DataManager
 from .tournament_manager import TournamentManager
@@ -34,10 +33,9 @@ class MenuManager:
             case "2":
                 return self.tournament_manager.create_tournament()
             case "3":
-                return self.tournament_manager.manage_tournament(
-                    self.menu,
-                    self.handle_tournament_management,
-                )
+                choice = self.tournament_manager.manage_tournament()
+                sub_choice = self.menu.tournament_management()
+                return self.handle_tournament_management(sub_choice, choice)
             case "4":
                 return None
 
@@ -53,7 +51,9 @@ class MenuManager:
                 return None
 
     def handle_tournament_management(self, user_choice, id):
-        selected_tournament = next(t for t in self.tournaments_data if t["id"] == id)
+        selected_tournament = next(
+            tournament for tournament in self.tournaments_data if tournament["id"] == id
+        )
 
         match user_choice:
             case "1":
@@ -120,20 +120,26 @@ class MenuManager:
                 except KeyError:
                     return "Aucun joueur dans ce tournoi."
 
+                if "matches" not in selected_tournament:
+                    selected_tournament["matches"] = []
+
                 turn_number = int(selected_tournament["turn"])
                 for i in range(1, turn_number + 1):
-                    current_turn = Turn(f"Round {i}")
                     print(f"\nRound {i} - Match:")
 
                     if i == 1:
-                        matches = self.tournament_manager.shuffle(current_turn, players)
-                    else:
-                        matches = self.tournament_manager.sort_by_score(
-                            current_turn, players
+                        create_turn = self.tournament_manager.shuffle(
+                            f"Round {i}", players
                         )
-                    print(matches)
-                    self.match_results.display_turn_matches(matches)
-                    current_turn.end_turn()
+                    else:
+                        create_turn = self.tournament_manager.sort_by_score(
+                            f"Round {i}", players
+                        )
+
+                    print(create_turn)
+                    self.match_results.display_turn_matches(create_turn)
+                    create_turn.end_turn()
+                    selected_tournament["matches"].append(create_turn.to_dict())
 
                     self.tournament_manager.update_player_score(
                         selected_tournament, players
