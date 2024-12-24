@@ -1,5 +1,5 @@
 import random
-from src.chess_tournament.models import Turn, Match, Tournament
+from src.chess_tournament.models import Turn, Match
 
 
 class TournamentManager:
@@ -8,28 +8,6 @@ class TournamentManager:
         self.tournaments_data = tournaments_data
         self.data_display = data_display
         self.data_manager = data_manager
-
-    def list_tournament(self):
-        if self.tournaments_data is None:
-            return "Aucun tournoi enregistré."
-        return self.data_display.format_tournaments()
-
-    def create_tournament(self):
-        id = self.data_manager.generate_new_id(self.tournaments_data)
-        name = input("Nom: ")
-        place = input("Lieu: ")
-        start_date = input("Date de début (JJ/MM/AAAA): ")
-        end_date = input("Date de fin (JJ/MM/AAAA): ")
-        turn = input("Nombre de tours (4 par défaut): ") or 4
-        description = input("Description: ").capitalize() or "Pas de description"
-
-        tournament = Tournament(
-            id, name, place, start_date, end_date, turn, description
-        )
-        self.tournaments_data.append(tournament.add_tournament())
-        self.data_manager.save_data(self.tournament_file, self.tournaments_data)
-
-        return "Le tournoi a été ajouté avec succès."
 
     def manage_tournament(self):
         print(self.list_tournament())

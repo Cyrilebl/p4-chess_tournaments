@@ -1,62 +1,11 @@
-from src.chess_tournament.views import Menu, DataDisplay, MatchResults
-from .data_manager import DataManager
-from .tournament_manager import TournamentManager
-from .player_manager import PlayerManager
-
-
 class MenuManager:
-    FOLDER_PATH = "src/data"
-    TOURNAMENT_FILE = "tournaments.json"
-    PLAYER_FILE = "players.json"
-
-    def __init__(self):
-        self.menu = Menu()
-        self.data_manager = DataManager(self.FOLDER_PATH)
-        self.players_data = self.data_manager.load_data(self.PLAYER_FILE)
-        self.tournaments_data = self.data_manager.load_data(self.TOURNAMENT_FILE)
-        self.data_display = DataDisplay(self.players_data, self.tournaments_data)
-        self.match_results = MatchResults()
-        self.tournament_manager = TournamentManager(
-            self.TOURNAMENT_FILE,
-            self.tournaments_data,
-            self.data_display,
-            self.data_manager,
-        )
-        self.player_manager = PlayerManager(
-            self.PLAYER_FILE, self.players_data, self.data_display, self.data_manager
-        )
-
-    def handle_tournaments_menu(self, user_choice):
-        match user_choice:
-            case "1":
-                return self.tournament_manager.list_tournament()
-            case "2":
-                return self.tournament_manager.create_tournament()
-            case "3":
-                choice = self.tournament_manager.manage_tournament()
-                sub_choice = self.menu.tournament_management()
-                return self.handle_tournament_management(sub_choice, choice)
-            case "4":
-                return None
-
-    def handle_players_menu(self, user_choice):
-        match user_choice:
-            case "1":
-                return self.player_manager.list_player_by_id()
-            case "2":
-                return self.player_manager.list_player_by_last_name()
-            case "3":
-                return self.player_manager.create_player()
-            case "4":
-                return None
-
     def handle_tournament_management(self, user_choice, id):
         selected_tournament = next(
             tournament for tournament in self.tournaments_data if tournament["id"] == id
         )
 
         match user_choice:
-            case "1":
+            case 1:
                 # Ajouter des joueurs au tournoi
                 print(self.player_manager.list_player_by_id())
                 while True:
@@ -106,14 +55,14 @@ class MenuManager:
                 self.data_manager.save_data(self.TOURNAMENT_FILE, self.tournaments_data)
                 return "Ajout de joueurs terminé."
 
-            case "2":
+            case 2:
                 try:
                     players_data = selected_tournament["players"]
                     return self.data_display.format_tournament_players(players_data)
                 except KeyError:
                     return "Aucun joueur dans ce tournoi."
 
-            case "3":
+            case 3:
                 # Générer les matchs
                 try:
                     players = selected_tournament["players"]
@@ -150,8 +99,8 @@ class MenuManager:
 
                 return "Match terminés."
 
-            case "4":
+            case 4:
                 return "Match affichés."
 
-            case "5":
-                return None
+            case 5:
+                return self.menu.tournaments_menu()
