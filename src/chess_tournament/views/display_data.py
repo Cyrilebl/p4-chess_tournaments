@@ -1,18 +1,12 @@
 from tabulate import tabulate
 
 
-class DataDisplay:
-    def __init__(self, players_data, tournaments_data):
-        self.players_data = players_data
-        self.tournaments_data = tournaments_data
-
-    def format_players(self, sort_filter):
+class DisplayData:
+    def format_players(self, players_data, sort_filter):
         headers = ["ID", "Nom", "Prénom", "Date de naissance"]
         rows = []
 
-        sorted_players = sorted(
-            self.players_data, key=lambda player: player[sort_filter]
-        )
+        sorted_players = sorted(players_data, key=lambda player: player[sort_filter])
 
         for player in sorted_players:
             rows.append(
@@ -23,7 +17,8 @@ class DataDisplay:
                     player["birth_date"],
                 ]
             )
-        return tabulate(rows, headers, tablefmt="grid")
+
+        return print(tabulate(rows, headers, tablefmt="grid"))
 
     def format_tournaments(self):
         headers = [

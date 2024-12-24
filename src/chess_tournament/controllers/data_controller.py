@@ -2,9 +2,9 @@ import os
 import json
 
 
-class DataManager:
-    def __init__(self, folder_path):
-        self.folder_path = folder_path
+class DataController:
+    def __init__(self):
+        self.folder_path = "src/data"
 
     def get_file_path(self, file_name):
         # Ensure the folder exists

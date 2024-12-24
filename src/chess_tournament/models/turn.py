@@ -14,7 +14,7 @@ class Turn:
     def end_turn(self):
         self.end_date = datetime.datetime.now()
 
-    def to_dict(self):
+    def serialize(self):
         return {
             "name": self.name,
             "start_date": self.start_date.strftime("%Y-%m-%d %H:%M:%S"),

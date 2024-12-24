@@ -1,11 +1,14 @@
 class Menu:
-    def handle_user_choice_error(self, array):
-        user_choice = input("Entrez votre choix : ")
-
-        while user_choice not in array:
-            user_choice = input("Choix invalide. Entrez votre choix : ")
-
-        return user_choice
+    def user_choice_error(self, number_of_choices):
+        while True:
+            try:
+                user_choice = int(input("Entrez votre choix: "))
+                if 0 < user_choice <= number_of_choices:
+                    return user_choice
+                else:
+                    print("Choix invalide... ")
+            except ValueError:
+                print("Entrée invalide. Veuillez entrer un numéro.")
 
     def main_menu(self):
         print(
@@ -16,13 +19,14 @@ class Menu:
 
 === MENU PRINCIPAL ===
 
-[1] Gestion des tournois
-[2] Gestion des joueurs
-[3] Quitter
+[1] Gestion des joueurs
+[2] Gestion des tournois
+[3] Configurer un tournoi
+[4] Quitter
 """
         )
 
-        return self.handle_user_choice_error(["1", "2", "3"])
+        return self.user_choice_error(4)
 
     def tournaments_menu(self):
         print(
@@ -31,12 +35,11 @@ class Menu:
 
 [1] Liste des tournois
 [2] Créer un nouveau tournoi
-[3] Gérer un tournoi
-[4] Menu principal
+[3] Menu principal
 """
         )
 
-        return self.handle_user_choice_error(["1", "2", "3", "4"])
+        return self.user_choice_error(3)
 
     def players_menu(self):
         print(
@@ -47,22 +50,22 @@ class Menu:
 [2] Liste des joueurs (Ordre alphabétique)
 [3] Ajouter un nouveau joueur
 [4] Menu principal
-        """
+"""
         )
 
-        return self.handle_user_choice_error(["1", "2", "3", "4"])
+        return self.user_choice_error(4)
 
-    def tournament_management(self):
+    def handle_tournament_menu(self):
         print(
             """
-=== GESTION DU TOURNOI ===
+=== CONFIGURATION ===
 
 [1] Ajouter des joueurs
 [2] Voir les joueurs
 [3] Générer les matchs
 [4] Voir les matchs
-[5] Menu principal
-        """
+[5] Retour
+"""
         )
 
-        return self.handle_user_choice_error(["1", "2", "3", "4", "5"])
+        return self.user_choice_error(5)

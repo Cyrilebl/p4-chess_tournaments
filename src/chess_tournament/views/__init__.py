@@ -1,5 +1,6 @@
 from .menu import Menu
-from .data_display import DataDisplay
-from .match_results import MatchResults
+from .player_view import PlayerView
+from .informative_message import InformativeMessage
+from .display_data import DisplayData
 
-__all__ = ["Menu", "DataDisplay", "MatchResults"]
+__all__ = ["Menu", "PlayerView", "InformativeMessage", "DisplayData"]

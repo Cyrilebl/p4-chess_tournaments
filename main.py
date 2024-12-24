@@ -1,37 +1,9 @@
-from src.chess_tournament.views import Menu
-from src.chess_tournament.controllers import MenuManager
+from src.chess_tournament.controllers import MainController
 
 
 def main():
-    menu = Menu()
-    menu_handler = MenuManager()
-    user_choice = menu.main_menu()
-
-    if user_choice == "1":
-        while True:
-            sub_choice = menu.tournaments_menu()
-            result = menu_handler.handle_tournaments_menu(sub_choice)
-            if result is None:
-                main()
-            elif result:
-                print(f"\n{result}")
-
-            input("\nAppuyez sur Entrée pour revenir au menu des tournois...")
-
-    elif user_choice == "2":
-        while True:
-            sub_choice = menu.players_menu()
-            result = menu_handler.handle_players_menu(sub_choice)
-            if result is None:
-                main()
-            elif result:
-                print(f"\n{result}")
-
-            input("\nAppuyez sur Entrée pour revenir au menu des joueurs...")
-
-    elif user_choice == "3":
-        print("\nÀ bientôt !")
-        exit()
+    main_controller = MainController()
+    main_controller.run()
 
 
 if __name__ == "__main__":

@@ -1,3 +1,3 @@
-from .menu_manager import MenuManager
+from .main_controller import MainController
 
-__all__ = ["DataManager"]
+__all__ = ["MainController"]
