@@ -1,8 +1,8 @@
 from .player import Player
-from .player_manager import PlayerManager
 from .tournament import Tournament
 from .turn import Turn
 from .match import Match
+from .data_manager import DataManager
 
 
-__all__ = ["Player", "PlayerManager", "Tournament", "Turn", "Match"]
+__all__ = ["Player", "Tournament", "Turn", "Match", "DataManager"]

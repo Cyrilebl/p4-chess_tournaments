@@ -1,13 +1,12 @@
-from src.chess_tournament.models import Player
+from src.chess_tournament.models import Player, DataManager
 from src.chess_tournament.views import PlayerView, InformativeMessage, DisplayData
-from .data_controller import DataController
 from .player_controller import PlayerController
 
 
 class PlayerMenuController:
     def __init__(self):
         self.player_controller = PlayerController(
-            Player, DisplayData(), PlayerView(), InformativeMessage(), DataController()
+            Player, DataManager(), DisplayData(), PlayerView(), InformativeMessage()
         )
 
     def handle_players_menu(self, user_choice):

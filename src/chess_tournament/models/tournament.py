@@ -19,7 +19,7 @@ class Tournament:
         self.turn = turn
         self.description = description
 
-    def add_tournament(self):
+    def serialize(self):
         return {
             "id": self.id,
             "name": self.name,

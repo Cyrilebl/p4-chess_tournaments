@@ -20,7 +20,7 @@ class DisplayData:
 
         return print(tabulate(rows, headers, tablefmt="grid"))
 
-    def format_tournaments(self):
+    def format_tournaments(self, tournaments_data):
         headers = [
             "ID",
             "Nom",
@@ -32,7 +32,7 @@ class DisplayData:
         ]
         rows = []
 
-        for tournament in self.tournaments_data:
+        for tournament in tournaments_data:
             rows.append(
                 [
                     tournament["id"],
@@ -45,7 +45,7 @@ class DisplayData:
                 ]
             )
 
-        return tabulate(rows, headers, tablefmt="grid")
+        return print(tabulate(rows, headers, tablefmt="grid"))
 
     def format_tournament_players(self, players_data):
         headers = ["ID", "Nom", "Prénom", "Date de naissance", "Score"]
