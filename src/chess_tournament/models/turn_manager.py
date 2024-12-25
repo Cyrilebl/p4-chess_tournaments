@@ -1,29 +1,7 @@
 import random
-from src.chess_tournament.models import Turn, Match
 
 
-class TournamentManager:
-    def __init__(self, tournament_file, tournaments_data, data_display, data_manager):
-        self.tournament_file = tournament_file
-        self.tournaments_data = tournaments_data
-        self.data_display = data_display
-        self.data_manager = data_manager
-
-    def manage_tournament(self):
-        print(self.list_tournament())
-
-        while True:
-            try:
-                choice = int(input("\nEntrez l'ID du tournoi à gérer: "))
-                if 1 <= choice <= len(self.tournaments_data):
-                    break
-                else:
-                    print("L'ID n'est pas valide, veuillez réessayer")
-            except ValueError:
-                print("Veuillez entrer un ID valide")
-
-        return choice
-
+class TurnManager:
     def update_player_score(self, tournament, updated_scores):
         for player in tournament["players"]:
             for updated_player in updated_scores:
@@ -37,7 +15,7 @@ class TournamentManager:
         def wrapper(self, turn_name, players):
             sort_players(self, players)
 
-            turn = Turn(turn_name)
+            # turn = Turn(turn_name)
 
             if len(players) % 2 != 0:
                 bye_player = players.pop()
@@ -48,10 +26,10 @@ class TournamentManager:
             for i in range(0, len(players), 2):
                 first_player = players[i]
                 second_player = players[i + 1]
-                match = Match(first_player, second_player)
-                turn.add_match(match.set_match())
+            #   match = Match(first_player, second_player)
+            #   turn.add_match(match.set_match())
 
-            return turn
+        #   return turn
 
         return wrapper
 

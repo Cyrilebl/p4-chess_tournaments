@@ -55,7 +55,7 @@ class Menu:
 
         return self.user_choice_error(4)
 
-    def handle_tournament_menu(self):
+    def tournament_setup_menu(self):
         print(
             """
 === CONFIGURATION ===
