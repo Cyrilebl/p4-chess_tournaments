@@ -7,8 +7,9 @@ class TournamentController:
         self.data_view = data_view
         self.tournament_view = tournament_view
         self.message_view = message_view
-        self.TOURNAMENTS_FILE = "tournaments.json"
-        self.tournaments_data = self.data_manager.load_data(self.TOURNAMENTS_FILE)
+        self.tournaments_data = self.data_manager.load_data(
+            data_manager.TOURNAMENTS_FILE
+        )
 
     def list_tournament(self):
         self.data_view.format_tournaments(self.tournaments_data)
@@ -23,6 +24,8 @@ class TournamentController:
             id, name, place, start_date, end_date, turn, description
         )
         self.tournaments_data.append(new_tournament.serialize())
-        self.data_manager.save_data(self.TOURNAMENTS_FILE, self.tournaments_data)
+        self.data_manager.save_data(
+            self.data_manager.TOURNAMENTS_FILE, self.tournaments_data
+        )
         self.message_view.new_entity_success("tournoi")
         self.message_view.return_to_menu()

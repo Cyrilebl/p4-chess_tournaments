@@ -5,6 +5,8 @@ import json
 class DataManager:
     def __init__(self, folder_path="src/data"):
         self.folder_path = folder_path
+        self.PLAYERS_FILE = "players.json"
+        self.TOURNAMENTS_FILE = "tournaments.json"
 
     def get_file_path(self, file_name):
         # Ensure the folder exists
