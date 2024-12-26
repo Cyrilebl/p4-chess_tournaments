@@ -1,17 +1,29 @@
-from src.chess_tournament.models import Tournament, DataManager
-from src.chess_tournament.views import TournamentView, InformativeMessage, DisplayData
+from src.chess_tournament.models import (
+    Tournament,
+    Turn,
+    DataManager,
+    TurnManager,
+)
+from src.chess_tournament.views import (
+    TournamentView,
+    InformativeMessage,
+    DisplayData,
+    Matches,
+)
 from .tournament_setup_controller import TournamentSetupController
-from .tournament_menu_controller import TournamentMenuController
 
 
 class TournamentSetupMenuController:
     def __init__(self):
         self.tounament_setup_controller = TournamentSetupController(
             Tournament,
+            Turn,
             DataManager(),
+            TurnManager(),
             DisplayData(),
             TournamentView(),
             InformativeMessage(),
+            Matches(),
         )
         self.selected_tournament = None
 
@@ -30,10 +42,16 @@ class TournamentSetupMenuController:
                     self.selected_tournament
                 )
             case 3:
-                return ""
+                return self.tounament_setup_controller.generate_matches(
+                    self.selected_tournament
+                )
             case 4:
                 return self.tounament_setup_controller.list_matches(
                     self.selected_tournament
                 )
             case 5:
+                return self.tounament_setup_controller.register_score(
+                    self.selected_tournament
+                )
+            case 6:
                 return None

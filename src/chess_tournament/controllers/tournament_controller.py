@@ -11,7 +11,6 @@ class TournamentController:
         self.tournaments_data = self.data_manager.load_data(self.TOURNAMENTS_FILE)
 
     def list_tournament(self):
-        self.message_view.no_current_data(self.tournaments_data)
         self.data_view.format_tournaments(self.tournaments_data)
         self.message_view.return_to_menu()
 

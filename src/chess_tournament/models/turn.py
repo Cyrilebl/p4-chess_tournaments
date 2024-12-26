@@ -8,9 +8,6 @@ class Turn:
         self.end_date = None
         self.matches = []
 
-    def add_match(self, match):
-        self.matches.append(match)
-
     def end_turn(self):
         self.end_date = datetime.datetime.now()
 
@@ -23,17 +20,3 @@ class Turn:
             ),
             "matches": self.matches,
         }
-
-    def __str__(self):
-        match_strings = []
-        for match in self.matches:
-            first_player = match[0][0]
-            second_player = match[1][0]
-
-            match_strings.append(
-                f"{first_player['first_name']} {first_player['last_name']} ({first_player['score']}) "
-                f"vs "
-                f"{second_player['first_name']} {second_player['last_name']} ({second_player['score']})"
-            )
-
-        return "\n".join(match_strings)

@@ -64,8 +64,9 @@ class Menu:
 [2] Voir les joueurs
 [3] Générer les matchs
 [4] Voir les matchs
-[5] Retour
+[5] Entrer les scores
+[6] Retour
 """
         )
 
-        return self.user_choice_error(5)
+        return self.user_choice_error(6)

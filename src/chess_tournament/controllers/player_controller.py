@@ -9,12 +9,10 @@ class PlayerController:
         self.players_data = self.data_manager.load_data(self.PLAYERS_FILE)
 
     def list_player_by_id(self):
-        self.message_view.no_current_data(self.players_data)
         self.data_view.format_players(self.players_data, "id")
         self.message_view.return_to_menu()
 
     def list_player_by_last_name(self):
-        self.message_view.no_current_data(self.players_data)
         self.data_view.format_players(self.players_data, "last_name")
         self.message_view.return_to_menu()
 
