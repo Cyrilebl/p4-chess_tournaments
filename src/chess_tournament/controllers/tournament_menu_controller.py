@@ -1,5 +1,5 @@
 from src.chess_tournament.models import Tournament, DataManager
-from src.chess_tournament.views import TournamentView, InformativeMessage, DisplayData
+from src.chess_tournament.views import TournamentView, MessageView, DisplayData
 from .tournament_controller import TournamentController
 
 
@@ -10,7 +10,7 @@ class TournamentMenuController:
             DataManager(),
             DisplayData(),
             TournamentView(),
-            InformativeMessage(),
+            MessageView(),
         )
 
     def handle_tournaments_menu(self, user_choice):

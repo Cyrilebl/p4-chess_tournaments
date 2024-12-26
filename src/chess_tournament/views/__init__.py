@@ -1,15 +1,15 @@
 from .menu import Menu
 from .player_view import PlayerView
 from .tournament_view import TournamentView
-from .informative_message import InformativeMessage
+from .matches_view import MatchesView
+from .message_view import MessageView
 from .display_data import DisplayData
-from .matches import Matches
 
 __all__ = [
     "Menu",
     "PlayerView",
     "TournamentView",
-    "InformativeMessage",
+    "MatchesView",
+    "MessageView",
     "DisplayData",
-    "Matches",
 ]

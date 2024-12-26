@@ -1,4 +1,4 @@
-from src.chess_tournament.views import Menu, InformativeMessage
+from src.chess_tournament.views import Menu, MessageView
 from .player_menu_controller import PlayerMenuController
 from .tournament_menu_controller import TournamentMenuController
 from .tournament_setup_menu_controller import TournamentSetupMenuController
@@ -7,7 +7,7 @@ from .tournament_setup_menu_controller import TournamentSetupMenuController
 class MainController:
     def __init__(self):
         self.menu = Menu()
-        self.informative_message = InformativeMessage()
+        self.informative_message = MessageView()
         self.player_menu_controller = PlayerMenuController()
         self.tournament_menu_controller = TournamentMenuController()
         self.tournament_setup_menu_controller = TournamentSetupMenuController()
