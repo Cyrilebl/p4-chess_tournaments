@@ -85,20 +85,23 @@ class DisplayData:
     def format_matches(self, selected_tournament):
         try:
             rounds_data = selected_tournament["rounds"]
+
+            for index, round in enumerate(rounds_data, start=1):
+                round_name = round.get("name", f"Round {index}")
+                print(f"\n--- {round_name} ---")
+
+                matches_data = round.get("matches", [])
+
+                for index, match in enumerate(matches_data, start=1):
+                    first_player, second_player = match
+                    print(
+                        f"Match {index}: "
+                        f"{first_player['last_name']} {first_player['first_name']} ({first_player['score']})"
+                        f" vs "
+                        f"{second_player['last_name']} {second_player['first_name']} ({second_player['score']})"
+                    )
+            return True
+
         except KeyError:
-            return print("\nAucun match n'existe pour ce tournoi")
-
-        for index, round in enumerate(rounds_data, start=1):
-            round_name = round.get("name", f"Round {index}")
-            print(f"\n--- {round_name} ---")
-
-            matches_data = round.get("matches", [])
-
-            for index, match in enumerate(matches_data, start=1):
-                first_player, second_player = match
-                print(
-                    f"Match {index}: "
-                    f"{first_player['last_name']} {first_player['first_name']} ({first_player['score']})"
-                    f" vs "
-                    f"{second_player['last_name']} {second_player['first_name']} ({second_player['score']})"
-                )
+            print("Aucun match n'existe pour ce tournoi")
+            return False

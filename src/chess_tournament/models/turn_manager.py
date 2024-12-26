@@ -2,17 +2,22 @@ import random
 
 
 class TurnManager:
-    def update_player_score(self, tournament, updated_scores):
-        for player in tournament["players"]:
-            for updated_player in updated_scores:
-                if (
-                    player["first_name"] == updated_player["first_name"]
-                    and player["last_name"] == updated_player["last_name"]
-                ):
-                    player["score"] = updated_player["score"]
+    def update_players_scores(self, tournament):
+        last_round = tournament["rounds"][-1]
+
+        for match in last_round["matches"]:
+            first_player, second_player = match
+
+            for player in tournament["players"]:
+                if player["id"] == first_player["id"]:
+                    player["score"] = first_player["score"]
+                elif player["id"] == second_player["id"]:
+                    player["score"] = second_player["score"]
 
     def create_turn(sort_players):
-        def wrapper(self, players):
+        def wrapper(self, selected_tournament):
+            players = selected_tournament["players"]
+
             sort_players(self, players)
             matches = []
 
@@ -46,3 +51,8 @@ class TurnManager:
         pass
 
     # if first_player already play against second_player skip
+    def check_scores(self, matches):
+        scores = [match[0]["score"] for match in matches] + [
+            match[1]["score"] for match in matches
+        ]
+        return all(score == 0 for score in scores)

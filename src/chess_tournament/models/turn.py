@@ -9,14 +9,13 @@ class Turn:
         self.matches = []
 
     def end_turn(self):
-        self.end_date = datetime.datetime.now()
+        self.end_date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        return self.end_date
 
     def serialize(self):
         return {
             "name": self.name,
             "start_date": self.start_date.strftime("%Y-%m-%d %H:%M:%S"),
-            "end_date": (
-                self.end_date.strftime("%Y-%m-%d %H:%M:%S") if self.end_date else None
-            ),
+            "end_date": None,
             "matches": self.matches,
         }

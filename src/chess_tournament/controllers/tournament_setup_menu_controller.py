@@ -5,10 +5,10 @@ from src.chess_tournament.models import (
     TurnManager,
 )
 from src.chess_tournament.views import (
-    TournamentView,
-    InformativeMessage,
     DisplayData,
-    Matches,
+    MessageView,
+    TournamentView,
+    MatchesView,
 )
 from .tournament_setup_controller import TournamentSetupController
 
@@ -21,9 +21,9 @@ class TournamentSetupMenuController:
             DataManager(),
             TurnManager(),
             DisplayData(),
+            MessageView(),
             TournamentView(),
-            InformativeMessage(),
-            Matches(),
+            MatchesView(),
         )
         self.selected_tournament = None
 
