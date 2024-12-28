@@ -20,4 +20,4 @@ class TournamentMenuController:
             case 2:
                 return self.tournament_controller.add_tournament()
             case 3:
-                return None
+                return

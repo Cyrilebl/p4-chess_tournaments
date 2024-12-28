@@ -18,4 +18,4 @@ class PlayerMenuController:
             case 3:
                 return self.player_controller.add_player()
             case 4:
-                return None
+                return
