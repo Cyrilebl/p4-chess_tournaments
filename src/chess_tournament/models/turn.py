@@ -4,8 +4,9 @@ import datetime
 class Turn:
     def __init__(self, name):
         self.name = name
-        self.start_date = datetime.datetime.now()
+        self.start_date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         self.end_date = None
+        self.scores_updated = False
         self.matches = []
 
     def end_turn(self):
@@ -15,7 +16,8 @@ class Turn:
     def serialize(self):
         return {
             "name": self.name,
-            "start_date": self.start_date.strftime("%Y-%m-%d %H:%M:%S"),
-            "end_date": None,
+            "start_date": self.start_date,
+            "end_date": self.end_date,
+            "scores_updated": self.scores_updated,
             "matches": self.matches,
         }

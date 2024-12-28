@@ -51,8 +51,3 @@ class TurnManager:
         pass
 
     # if first_player already play against second_player skip
-    def check_scores(self, matches):
-        scores = [match[0]["score"] for match in matches] + [
-            match[1]["score"] for match in matches
-        ]
-        return all(score == 0 for score in scores)

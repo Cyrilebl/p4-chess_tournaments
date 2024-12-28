@@ -9,6 +9,7 @@ from src.chess_tournament.views import (
     MessageView,
     TournamentView,
     MatchesView,
+    Helpers,
 )
 from .tournament_setup_controller import TournamentSetupController
 
@@ -24,6 +25,7 @@ class TournamentSetupMenuController:
             MessageView(),
             TournamentView(),
             MatchesView(),
+            Helpers(),
         )
         self.selected_tournament = None
 
