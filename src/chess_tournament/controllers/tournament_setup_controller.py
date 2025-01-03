@@ -74,7 +74,7 @@ class TournamentSetupController:
             self.message_view.can_t_generate_more_matches()
             return self.message_view.return_to_menu()
 
-        if rounds and rounds[-1]["scores_updated"] == False:
+        if rounds and not rounds[-1]["scores_updated"]:
             self.message_view.record_scores()
             return self.message_view.return_to_menu()
 
@@ -111,7 +111,7 @@ class TournamentSetupController:
 
         current_round = selected_tournament["rounds"][-1]
 
-        if current_round["scores_updated"] == True:
+        if current_round["scores_updated"]:
             self.message_view.generate_new_matches()
             return self.message_view.return_to_menu()
 

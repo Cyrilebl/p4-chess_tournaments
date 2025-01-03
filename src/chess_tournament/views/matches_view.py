@@ -5,7 +5,8 @@ class MatchesView:
 
             while True:
                 result = input(
-                    f"\nQuel joueur a gagné le match {i + 1} ? (1 pour {first_player['first_name']}, 2 pour {second_player['first_name']}, 3 pour égalité): "
+                    f"\nQuel joueur a gagné le match {i + 1} ? (1 pour {first_player['first_name']}, "
+                    f"2 pour {second_player['first_name']}, 3 pour égalité): "
                 )
                 match result:
                     case "1":

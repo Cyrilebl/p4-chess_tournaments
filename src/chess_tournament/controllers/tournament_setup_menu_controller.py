@@ -56,4 +56,4 @@ class TournamentSetupMenuController:
                     self.selected_tournament
                 )
             case 6:
-                return None
+                return
