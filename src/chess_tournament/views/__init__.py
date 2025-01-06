@@ -3,7 +3,7 @@ from .player_view import PlayerView
 from .tournament_view import TournamentView
 from .matches_view import MatchesView
 from .message_view import MessageView
-from .display_data import DisplayData
+from .formatter import Formatter
 from .helpers import Helpers
 
 __all__ = [
@@ -12,6 +12,6 @@ __all__ = [
     "TournamentView",
     "MatchesView",
     "MessageView",
-    "DisplayData",
+    "Formatter",
     "Helpers",
 ]
