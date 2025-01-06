@@ -2,16 +2,16 @@ from src.chess_tournament.models import (
     Tournament,
     Turn,
     DataManager,
-    TurnManager,
 )
 from src.chess_tournament.views import (
-    DisplayData,
+    Formatter,
     MessageView,
     TournamentView,
     MatchesView,
     Helpers,
 )
 from .tournament_setup_controller import TournamentSetupController
+from .match_maker import MatchMaker
 
 
 class TournamentSetupMenuController:
@@ -20,12 +20,12 @@ class TournamentSetupMenuController:
             Tournament,
             Turn,
             DataManager(),
-            TurnManager(),
-            DisplayData(),
+            Formatter(),
             MessageView(),
             TournamentView(),
             MatchesView(),
             Helpers(),
+            MatchMaker(),
         )
         self.selected_tournament = None
 
@@ -56,4 +56,6 @@ class TournamentSetupMenuController:
                     self.selected_tournament
                 )
             case 6:
+                return self.tounament_setup_controller.ranking(self.selected_tournament)
+            case 7:
                 return
