@@ -65,8 +65,9 @@ class Menu:
 [3] Générer les matchs
 [4] Voir les matchs
 [5] Entrer les scores
-[6] Retour
+[6] Classement
+[7] Menu principal
 """
         )
 
-        return self.user_choice_error(6)
+        return self.user_choice_error(7)

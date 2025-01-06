@@ -42,7 +42,7 @@ class MainController:
                     self.handle_submenu(
                         self.menu.tournament_setup_menu,
                         self.tournament_setup_menu_controller.handle_tournament_setup_menu,
-                        6,
+                        7,
                     )
 
                 case 4:
