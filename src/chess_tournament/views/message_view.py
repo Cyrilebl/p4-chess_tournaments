@@ -17,8 +17,8 @@ class MessageView:
     def ask_player_id(self):
         return input("\nEntrez l'ID du joueur à ajouter (ou 'q' pour quitter): ")
 
-    def generate_new_matches(self):
-        print("Les scores pour ce round ont déjà été mis à jour.")
+    def scores_already_updated(self):
+        print("\nLes scores pour ce round ont déjà été mis à jour.")
 
     def record_scores(self):
         print("\nVeuillez inscrire les scores pour le round en cours.")
